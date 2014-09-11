@@ -1,0 +1,10 @@
+<div class="control-group " >
+    <%= f.fields_for :songs do |form| %>
+    <div class="controls" >
+      <%= form.label :song, :class => 'control-label'%>
+      <div class="controls">
+        <%= form.text_field :name , :class => 'control' %>
+        </div>
+      </div>
+    <% end %>
+  </div>

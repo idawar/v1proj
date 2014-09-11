@@ -1,0 +1,34 @@
+<%- model_class = Singer -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
+  <dd><%= @singer.first_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
+  <dd><%= @singer.last_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:sex) %>:</strong></dt>
+  <dd><%= @singer.sex %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:age) %>:</strong></dt>
+  <dd><%= @singer.age %></dd>
+  <% @singer.songs.each do |song|  %> 
+    <dt><strong><%= model_class.human_attribute_name(:song) %>:</strong></dt>
+  <dd><%= song.name %>
+    <%= link_to 'View', song , :class => 'btn btn-link'%></dd>
+  <% end  %>
+  
+  
+  
+</dl>
+
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              singers_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_singer_path(@singer), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              singer_path(@singer),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
